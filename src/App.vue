@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div class="nav">
       <CommonHeader></CommonHeader>
     </div>
     <router-view/>
@@ -9,29 +9,22 @@
 
 <script>
 import CommonHeader from './components/CommonHeader';
-import { getCatList } from "./api/user_api";
 export default {
   mounted() {
-    getCatList().then(res => {
-      console.log(res);
-    });
   },
   created() {},
-  components:{
+  components: {
     CommonHeader,
-  }
+  },
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-#nav {
+.nav {
   a {
     font-weight: bold;
     color: #2c3e50;
