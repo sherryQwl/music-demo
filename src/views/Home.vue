@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="home-swiper">
+      <common-swiper></common-swiper>
+      <common-title titleName="华语推荐">
+        <ul class="home-swiper-name">
+          <li>华语</li>|
+          <li>流行</li>|
+          <li>摇滚</li>|
+          <li>民谣</li>|
+          <li>电子</li>
+        </ul>
+      </common-title>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import CommonSwiper from "@/components/CommonSwiper.vue";
+import CommonTitle from "./components/CommonTitle";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    HelloWorld,
-  },
+    CommonSwiper,
+    CommonTitle
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  &-swiper{
+    width: 100%;
+    &-name{
+      display: flex;
+      li{
+        margin:0 16px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+</style>

@@ -3,7 +3,9 @@
     <div class="nav">
       <CommonHeader></CommonHeader>
     </div>
-    <router-view/>
+    <div class="app_contain">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -32,5 +34,9 @@ export default {
       color: #42b983;
     }
   }
+}
+.app_contain{
+  width: 980px;
+  margin: 0 auto;
 }
 </style>
