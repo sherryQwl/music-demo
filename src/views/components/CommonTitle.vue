@@ -31,6 +31,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #C10D0C;
+  margin: 20px;
   &-left {
     text-align: left;
     display: flex;

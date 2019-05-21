@@ -11,6 +11,7 @@
           <li>电子</li>
         </ul>
       </common-title>
+      <item-card></item-card>
     </div>
   </div>
 </template>
@@ -19,12 +20,14 @@
 // @ is an alias to /src
 import CommonSwiper from "@/components/CommonSwiper.vue";
 import CommonTitle from "./components/CommonTitle";
+import itemCard from "./components/ItemCard";
 
 export default {
   name: "home",
   components: {
     CommonSwiper,
-    CommonTitle
+    CommonTitle,
+    itemCard
   }
 };
 </script>
