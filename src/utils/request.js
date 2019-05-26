@@ -18,7 +18,9 @@ server.interceptors.request.use(function (config) {
 // Add a response interceptor
 server.interceptors.response.use(function (response) {
     // Do something with response data
-    return response;
+    if(response.status == '200') {
+      return response.data;
+    }
   }, function (error) {
     // Do something with response error
     return Promise.reject(error);

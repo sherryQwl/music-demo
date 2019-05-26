@@ -1,17 +1,17 @@
 <template>
   <div class="card">
-    <template v-for="(item,index) in cardList">
+    <template v-for="(item,index) in chineseList">
       <div :key="index" class="card-container">
         <div class="card-header">
-          <img :src="item.url" alt>
+          <img class="card-header-img" :src="item.coverImgUrl" alt>
           <div class="card-header-shadow">
             <i class="el-icon-service card-header-icon"></i>
-            <div class="card-header-num">{{item.num}}</div>
+            <div class="card-header-num">{{item.commentCount | formatCount}}</div>
             <i class="card-header-play"></i>
           </div>
         </div>
         <div class="card-title">
-          <a href>{{item.title}}</a>
+          <a href>{{item.name}}</a>
         </div>
       </div>
     </template>
@@ -19,44 +19,42 @@
 </template>
 
 <script>
+import filter from "utils/filters";
+
 export default {
   name: "ItemCard",
+  mixins: [
+    filter
+  ],
   data() {
     return {
-      cardList: [
-        {
-          url: require("../../assets/image/img1.jpeg"),
-          num: "123",
-          title: "红酒与玫瑰的邂逅"
-        },
-        {
-          url: require("../../assets/image/img2.jpeg"),
-          num: "456",
-          title: "评论过十万的英文歌"
-        },
-        {
-          url: require("../../assets/image/img3.jpeg"),
-          num: "678",
-          title: "白噪音，看书静心写作业用"
-        },
-        {
-          url: require("../../assets/image/img4.jpeg"),
-          num: "3432",
-          title: "蒸气波＆采样：少女の忘忧乐园"
-        }
-      ]
+      cardList: []
     };
-  }
+  },
+  props: {
+    chineseList: {
+      type: Array,
+      default: () => []
+    }
+  },
+  
+  mounted() {},
+  methods: {}
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  justify-items: center;
+  flex-wrap: wrap;
+  margin-left: -20px;
   &-header,
   &-container {
     display: inline-block;
+    height: 100%;
   }
   &-header {
     position: relative;
@@ -75,6 +73,10 @@ export default {
       background: url("../../assets/image/iconall.png");
       background-position: 0 0;
     }
+    &-img {
+      width: 140px;
+      height: 140px;
+    }
     &-shadow {
       position: absolute;
       width: 140px;
@@ -92,6 +94,7 @@ export default {
   }
   &-container {
     width: 140px;
+    padding: 0 0 30px 42px;
   }
 }
 </style>

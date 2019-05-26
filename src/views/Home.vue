@@ -4,14 +4,17 @@
       <common-swiper></common-swiper>
       <common-title titleName="华语推荐">
         <ul class="home-swiper-name">
-          <li>华语</li>|
-          <li>流行</li>|
-          <li>摇滚</li>|
-          <li>民谣</li>|
-          <li>电子</li>
+          <template v-for="(item,index) in cateList">
+            <li :key="index">{{item.name}}</li>
+            <span v-if="index < cateList.length-1">|</span>
+          </template>
         </ul>
       </common-title>
+      <item-card :chineseList="chineseData"></item-card>
+
+      <common-title titleName="个性化推荐"></common-title>
       <item-card></item-card>
+      <page-bean></page-bean>
     </div>
   </div>
 </template>
@@ -21,25 +24,54 @@
 import CommonSwiper from "@/components/CommonSwiper.vue";
 import CommonTitle from "./components/CommonTitle";
 import itemCard from "./components/ItemCard";
+import { getCatList, getHotPlaylist } from "api/user_api";
+import pageBean from "./components/pageBean";
 
 export default {
   name: "home",
+  data() {
+    return {
+      cateList: [],
+      chineseData:[],// 华语推荐
+    };
+  },
   components: {
     CommonSwiper,
     CommonTitle,
-    itemCard
+    itemCard,
+    pageBean
+  },
+  mounted() {
+    this.getHotPlaylists();
+    this.getSongsList();
+  },
+  methods: {
+    // 获取歌单分类
+    async getSongsList() {
+      let res = await getCatList();
+      this.cateList = res.tags;
+    },
+    // 获取歌单分类，包含类别信息
+    async getHotPlaylists() {
+      let params = {
+        limit: 10,
+        order: "new"
+      };
+      let res = await getHotPlaylist(params);
+      this.chineseData = res.playlists;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .home {
-  &-swiper{
+  &-swiper {
     width: 100%;
-    &-name{
+    &-name {
       display: flex;
-      li{
-        margin:0 16px;
+      li {
+        margin: 0 16px;
         cursor: pointer;
       }
     }
