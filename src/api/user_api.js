@@ -14,3 +14,9 @@ export const getHotPlaylist = param => {
 export const getCatList = () => {
   return axios.get("/playlist/hot");
 };
+
+// 调用此接口，可获得每日推荐歌单（需要登录） /recommend/resource
+export const recommendList = () => {
+  debugger
+  return axios.get("/recommend/resource");
+}

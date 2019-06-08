@@ -13,7 +13,7 @@
       <item-card :chineseList="chineseData"></item-card>
 
       <common-title titleName="个性化推荐"></common-title>
-      <item-card></item-card>
+      <item-card :personalizedList="personalizedData"></item-card>
       <page-bean></page-bean>
     </div>
   </div>
@@ -24,7 +24,7 @@
 import CommonSwiper from "@/components/CommonSwiper.vue";
 import CommonTitle from "./components/CommonTitle";
 import itemCard from "./components/ItemCard";
-import { getCatList, getHotPlaylist } from "api/user_api";
+import { getCatList, getHotPlaylist, recommendList } from "api/user_api";
 import pageBean from "./components/pageBean";
 
 export default {
@@ -33,6 +33,7 @@ export default {
     return {
       cateList: [],
       chineseData:[],// 华语推荐
+      personalizedData:[],// 个性化推荐
     };
   },
   components: {
@@ -44,6 +45,7 @@ export default {
   mounted() {
     this.getHotPlaylists();
     this.getSongsList();
+    this.getRecommondList();
   },
   methods: {
     // 获取歌单分类
@@ -59,6 +61,12 @@ export default {
       };
       let res = await getHotPlaylist(params);
       this.chineseData = res.playlists;
+    },
+    // 获得每日推荐歌单（需要登录）
+    async getRecommondList() {
+      debugger
+      let res = await recommendList();
+      console.log(res);
     }
   }
 };

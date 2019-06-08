@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     changeHandler() {
-      debugger
       if(this.currentComponent == 'test2'){
         this.currentComponent = 'test1'
       }else {

@@ -35,6 +35,10 @@ export default {
     chineseList: {
       type: Array,
       default: () => []
+    },
+    personalizedList:{
+      type:Array,
+      default:() => []
     }
   },
   
